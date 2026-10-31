@@ -2340,3 +2340,528 @@ body.light-mode .leader-card:hover {
     }
 
 }
+
+
+
+/* ---------------------------------------------------------
+   LEADERSHIP SOCIAL PROFILE ICONS
+--------------------------------------------------------- */
+
+.leader-socials {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.leader-social-link {
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-soft);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: rgba(0, 191, 255, 0.035);
+    transition:
+        color 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+.leader-social-link svg {
+    width: 17px;
+    height: 17px;
+    fill: currentColor;
+}
+
+a.leader-social-link:hover {
+    color: var(--blue);
+    border-color: var(--blue);
+    background: rgba(0, 191, 255, 0.10);
+    box-shadow: 0 0 16px rgba(0, 191, 255, 0.16);
+    transform: translateY(-2px);
+}
+
+.leader-social-link.is-unavailable {
+    opacity: 0.38;
+    cursor: default;
+}
+
+
+
+/* ---------------------------------------------------------
+   LEADERSHIP CARD — FULL ANIMATED PINK / TEAL / YELLOW FILL
+--------------------------------------------------------- */
+
+.leader-card {
+    isolation: isolate;
+    border: 2px solid #071a35;
+    background: linear-gradient(
+        120deg,
+        #FF5C7C 0%,
+        #00D1A7 38%,
+        #FFC857 70%,
+        #FF5C7C 100%
+    );
+    background-size: 300% 300%;
+    animation: leaderGradientFlow 18s ease-in-out infinite;
+    box-shadow:
+        0 0 0 1px #061326,
+        0 0 10px rgba(0, 48, 112, 0.95),
+        0 0 24px rgba(0, 67, 150, 0.78),
+        0 0 42px rgba(0, 42, 100, 0.48),
+        0 12px 32px rgba(0, 0, 0, 0.42);
+}
+
+/* Remove the old blue glow and dark inner overlay.
+   The animated gradient should cover the entire card. */
+.leader-card::before,
+.leader-card::after {
+    content: none;
+}
+
+.leader-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.leader-card h3 {
+    color: #08243b;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.18);
+    font-weight: 800;
+}
+
+.leader-card .leader-role {
+    color: #073344;
+    text-shadow: none;
+}
+
+.leader-card .leader-social-link {
+    color: #ffffff;
+    border-color: rgba(7, 32, 45, 0.28);
+    background: rgba(7, 32, 45, 0.18);
+}
+
+.leader-card a.leader-social-link:hover {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.8);
+    background: rgba(7, 32, 45, 0.32);
+    box-shadow: 0 0 16px rgba(255, 255, 255, 0.22);
+}
+
+@keyframes leaderGradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .leader-card {
+        animation: none;
+    }
+}
+
+
+/* ---------------------------------------------------------
+   LEADERSHIP CARD — MODE-SPECIFIC AURORA INTERIORS
+   Dark mode: deep navy aurora
+   Light mode: soft pearl / ice aurora
+--------------------------------------------------------- */
+
+.leader-card {
+    position: relative;
+    isolation: isolate;
+}
+
+/* Dark mode interior */
+.leader-card::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    z-index: 0;
+    border-radius: calc(24px - 3px);
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse at 12% 12%, rgba(0, 209, 167, 0.25), transparent 48%),
+        radial-gradient(ellipse at 90% 88%, rgba(139, 92, 246, 0.30), transparent 48%),
+        radial-gradient(ellipse at 82% 8%, rgba(0, 140, 255, 0.18), transparent 42%),
+        linear-gradient(145deg, #0b1b30, #071321 60%, #10152c);
+    background-size: 150% 150%;
+    animation: leaderInteriorAurora 16s ease-in-out infinite;
+}
+
+.leader-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.leader-card h3 {
+    color: #e9f5ff;
+    text-shadow: 0 0 18px rgba(60, 150, 255, 0.25);
+}
+
+.leader-card .leader-role {
+    color: #55dfd0;
+}
+
+/* Light mode interior — pearl white with gentle aqua and lavender */
+[data-theme="light"] .leader-card::after {
+    background:
+        radial-gradient(ellipse at 12% 12%, rgba(0, 190, 170, 0.17), transparent 48%),
+        radial-gradient(ellipse at 90% 88%, rgba(139, 92, 246, 0.16), transparent 48%),
+        radial-gradient(ellipse at 82% 8%, rgba(65, 145, 235, 0.12), transparent 42%),
+        linear-gradient(145deg, #ffffff, #f1f8fc 58%, #f5f1ff);
+    background-size: 150% 150%;
+}
+
+[data-theme="light"] .leader-card h3 {
+    color: #102b43;
+    text-shadow: none;
+}
+
+[data-theme="light"] .leader-card .leader-role {
+    color: #087f83;
+}
+
+[data-theme="light"] .leader-card .leader-social-link {
+    color: #164c67;
+    border-color: rgba(28, 105, 135, 0.24);
+    background: rgba(255, 255, 255, 0.68);
+}
+
+[data-theme="light"] .leader-card a.leader-social-link:hover {
+    color: #075f80;
+    border-color: #168eae;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 0 15px rgba(0, 145, 175, 0.18);
+}
+
+@keyframes leaderInteriorAurora {
+    0%, 100% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .leader-card::after {
+        animation: none;
+    }
+}
+
+
+/* ---------------------------------------------------------
+   LEADERSHIP CARD — GLOW ONLY ON HOVER
+   Resting state stays calm; glow appears on pointer hover.
+--------------------------------------------------------- */
+
+.leader-card {
+    box-shadow:
+        0 0 0 1px rgba(6, 19, 38, 0.9),
+        0 8px 22px rgba(0, 0, 0, 0.18);
+    transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+.leader-card:hover {
+    box-shadow:
+        0 0 0 1px rgba(6, 19, 38, 0.95),
+        0 0 12px rgba(0, 209, 167, 0.38),
+        0 0 28px rgba(0, 110, 255, 0.42),
+        0 0 44px rgba(139, 92, 246, 0.28),
+        0 16px 36px rgba(0, 0, 0, 0.3);
+}
+
+/* Light mode: subtle at rest, soft colorful glow on hover */
+[data-theme="light"] .leader-card {
+    box-shadow:
+        0 6px 20px rgba(35, 75, 110, 0.10);
+}
+
+[data-theme="light"] .leader-card:hover {
+    /* Broad, saturated color haze — no dark outline or black edge */
+    box-shadow:
+        0 0 22px 5px rgba(0, 145, 135, 0.34),
+        0 0 42px 10px rgba(35, 105, 205, 0.28),
+        0 0 58px 12px rgba(125, 75, 190, 0.22);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .leader-card {
+        transition: none;
+    }
+}
+
+
+/* LIGHT MODE FIX: remove the dark navy outline completely.
+   Keep the coloured hover glow, without adding a replacement border. */
+[data-theme="light"] .leader-card {
+    border-color: transparent !important;
+    box-shadow: 0 8px 22px rgba(35, 75, 110, 0.10) !important;
+}
+
+[data-theme="light"] .leader-card:hover {
+    border-color: transparent !important;
+    box-shadow:
+        0 0 16px rgba(0, 55, 115, 0.52),
+        0 0 32px rgba(12, 72, 145, 0.46),
+        0 0 48px rgba(48, 55, 130, 0.36),
+        0 14px 32px rgba(12, 35, 75, 0.16) !important;
+}
+
+
+/* LIGHT MODE — stronger contrast against the white page */
+[data-theme="light"] .leader-card {
+    border: 2px solid #173b63 !important;
+    background: linear-gradient(
+        120deg,
+        #174b70 0%,
+        #087f83 38%,
+        #394b86 72%,
+        #174b70 100%
+    ) !important;
+    background-size: 300% 300% !important;
+}
+
+/* Give the card interior a visible cool-toned surface and stronger moving colour */
+[data-theme="light"] .leader-card::after {
+    background:
+        radial-gradient(ellipse at 12% 12%, rgba(0, 155, 145, 0.28), transparent 52%),
+        radial-gradient(ellipse at 90% 88%, rgba(112, 91, 190, 0.25), transparent 52%),
+        radial-gradient(ellipse at 82% 8%, rgba(55, 125, 205, 0.23), transparent 46%),
+        linear-gradient(145deg, #e4edf5, #dce8f2 58%, #e8e3f3) !important;
+    background-size: 180% 180% !important;
+    animation: leaderInteriorAurora 13s ease-in-out infinite;
+}
+
+
+/* LIGHT MODE — stronger role-label contrast */
+[data-theme="light"] .leader-card .leader-role {
+    color: #123b63 !important;
+    font-weight: 700;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+
+/* LIGHT MODE — clearly separate name and role colours */
+[data-theme="light"] .leader-card h3 {
+    color: #142b45 !important;
+    text-shadow: none !important;
+}
+
+[data-theme="light"] .leader-card .leader-role {
+    color: #075c68 !important;
+    font-weight: 700;
+    text-shadow: none !important;
+}
+
+
+/* ---------------------------------------------------------
+   LEADERSHIP CARDS — PRESERVE RECTANGULAR SHAPE ON MOBILE
+   Keep the desktop layout unchanged; make mobile cards wider
+   than they are tall instead of allowing them to become square.
+--------------------------------------------------------- */
+
+@media (max-width: 600px) {
+    .leadership-grid {
+        width: min(88%, 390px);
+        grid-template-columns: 1fr;
+    }
+
+    .leader-card {
+        aspect-ratio: 0.82 / 1;
+        min-height: 0;
+        padding: 42px 18px 24px;
+        justify-content: flex-start;
+    }
+
+    /* Explicitly position the content from the top of the card.
+       Avoid transforms on every child, which can be overridden by other rules. */
+    .leader-image {
+        width: clamp(138px, 38vw, 152px);
+        height: clamp(138px, 38vw, 152px);
+        margin: 0 auto 17px;
+        flex: 0 0 auto;
+    }
+
+    .leader-card h3 {
+        margin: 0 0 6px;
+        font-size: 1.08rem;
+    }
+
+    .leader-role {
+        font-size: 0.68rem;
+    }
+
+    .leader-socials {
+        margin: 17px auto 0;
+        gap: 10px;
+    }
+
+    .leader-social-link {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+/* Extra-narrow phones: retain the top-aligned portrait composition. */
+@media (max-width: 380px) {
+    .leadership-grid {
+        width: 90%;
+    }
+
+    .leader-card {
+        aspect-ratio: 0.78 / 1;
+        padding: 38px 14px 22px;
+    }
+
+    .leader-image {
+        width: 132px;
+        height: 132px;
+    }
+}
+
+
+/* ---------------------------------------------------------
+   LEADERSHIP CARDS — MOBILE PROPORTIONS MATCH DESKTOP
+   Keep the mobile card compact instead of stretching it tall.
+   Reuse the desktop portrait size and content spacing.
+--------------------------------------------------------- */
+
+@media (max-width: 600px) {
+    .leadership-grid {
+        width: min(92%, 420px);
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .leader-card {
+        aspect-ratio: 0.98 / 1;
+        min-height: 0;
+        padding: 30px 22px 24px;
+        justify-content: flex-start;
+    }
+
+    .leader-image {
+        width: 160px;
+        height: 160px;
+        margin: 0 auto 20px;
+        flex: 0 0 auto;
+    }
+
+    .leader-card h3 {
+        margin: 0 0 8px;
+        font-size: 1.15rem;
+        line-height: 1.3;
+    }
+
+    .leader-role {
+        font-size: 0.72rem;
+        line-height: 1.5;
+    }
+
+    .leader-socials {
+        margin: 28px auto 0;
+        gap: 14px;
+    }
+
+    .leader-social-link {
+        width: 38px;
+        height: 38px;
+    }
+
+    .leader-social-link svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* Slightly compact proportion on very narrow phones too. */
+@media (max-width: 380px) {
+    .leadership-grid {
+        width: 92%;
+    }
+
+    .leader-card {
+        aspect-ratio: 0.94 / 1;
+        padding: 28px 16px 22px;
+    }
+
+    .leader-image {
+        width: 148px;
+        height: 148px;
+        margin-bottom: 18px;
+    }
+}
+
+
+/* MOBILE FINAL BALANCE — shift the content stack down slightly */
+@media (max-width: 600px) {
+    .leader-image {
+        margin-top: 12px;
+    }
+
+    .leader-card h3 {
+        margin-top: 0;
+    }
+
+    .leader-socials {
+        margin-top: 28px;
+    }
+}
+
+@media (max-width: 380px) {
+    .leader-image {
+        margin-top: 12px;
+    }
+}
+
+
+/* MOBILE FIX — keep leadership social links fully inside each card.
+   The previous aspect-ratio forced a fixed card height, clipping the
+   social icons on phones. Let the card grow to fit its contents. */
+@media (max-width: 600px) {
+    .leader-card {
+        aspect-ratio: auto !important;
+        height: auto !important;
+        min-height: 0;
+        padding-bottom: 34px;
+        overflow: visible;
+    }
+
+    .leader-socials {
+        position: relative;
+        display: flex;
+        visibility: visible;
+        opacity: 1;
+        margin-top: 28px;
+        margin-bottom: 0;
+        flex-shrink: 0;
+    }
+}
+
+@media (max-width: 380px) {
+    .leader-card {
+        aspect-ratio: auto !important;
+        height: auto !important;
+        padding-bottom: 30px;
+    }
+}
