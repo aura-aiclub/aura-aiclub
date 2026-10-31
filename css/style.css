@@ -2865,3 +2865,89 @@ a.leader-social-link:hover {
         padding-bottom: 30px;
     }
 }
+
+
+/* =========================================================
+   MOBILE PERFORMANCE — VIEWPORT-BASED LEADERSHIP ANIMATIONS
+   Desktop/laptop animations remain unchanged.
+   On mobile, leadership card animations run only while the
+   card has the .is-visible class (added by IntersectionObserver).
+   ========================================================= */
+
+@media (max-width: 600px) {
+    /* Keep cards visually identical, but stop continuous animation
+       until the card enters the viewport. */
+    .leader-card {
+        animation: none !important;
+    }
+
+    .leader-card::after {
+        animation: none !important;
+    }
+
+    /* Animate only cards currently considered visible. */
+    .leader-card.is-visible {
+        animation: leaderGradientFlow 18s ease-in-out infinite !important;
+    }
+
+    .leader-card.is-visible::after {
+        animation: leaderInteriorAurora 16s ease-in-out infinite !important;
+    }
+
+    /* Preserve the existing light-mode animation timing. */
+    [data-theme="light"] .leader-card.is-visible::after {
+        animation: leaderInteriorAurora 13s ease-in-out infinite !important;
+    }
+}
+
+/* Accessibility preference takes priority over viewport animation. */
+@media (prefers-reduced-motion: reduce) {
+    @media (max-width: 600px) {
+        .leader-card,
+        .leader-card::after {
+            animation: none !important;
+        }
+    }
+}
+
+
+/* =========================================================
+   DESKTOP PERFORMANCE — STATIC LEADERSHIP CARD COLOURS
+   Keep the existing colours visible at rest. Start the
+   gradient/aurora movement only while a pointer hovers a card.
+   Mobile viewport-based behaviour above remains unchanged.
+   ========================================================= */
+
+@media (min-width: 601px) {
+    .leader-card {
+        animation: none !important;
+        background-position: 50% 50%;
+    }
+
+    .leader-card::after {
+        animation: none !important;
+        background-position: 0% 0%;
+    }
+
+    .leader-card:hover {
+        animation: leaderGradientFlow 18s ease-in-out infinite !important;
+    }
+
+    .leader-card:hover::after {
+        animation: leaderInteriorAurora 16s ease-in-out infinite !important;
+    }
+
+    [data-theme="light"] .leader-card:hover::after {
+        animation: leaderInteriorAurora 13s ease-in-out infinite !important;
+    }
+}
+
+/* Reduced-motion preference disables hover-triggered movement too. */
+@media (prefers-reduced-motion: reduce) {
+    @media (min-width: 601px) {
+        .leader-card,
+        .leader-card::after {
+            animation: none !important;
+        }
+    }
+}
